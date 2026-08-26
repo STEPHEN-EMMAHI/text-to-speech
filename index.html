@@ -3,24 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="A text-to-speech project" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
     <title>text-to-speech</title>
   </head>
-  <body>
-    <main class="overall-container">
-      <div class="heading">
+  <body class="bg-[#DBDBED]">
+    <!-- main -->
+    <main
+      class="overall-container h-screen flex flex-col justify-center items-center gap-4"
+    >
+      <h1 class="heading text-3xl text-center font-bold">
         Text To Speech
-        <span>Converter</span>
-      </div>
+        <span class="text-[#FF6600] block">Converter</span>
+      </h1>
 
-      <textarea name="text" id="text"></textarea>
+      <!-- textarea -->
+      <textarea
+        name="text"
+        id="text"
+        class="bg-[#042352] w-3xs h-40 border caret-white text-white"
+      ></textarea>
 
-      <div>
-        <select name="speech-lang" id="speech-lang"></select>
-        <button class="listen-speech">Listen</button>
+      <!-- select and button -->
+      <div class="flex w-3xs justify-between font-bold">
+        <select
+          name="speech-lang"
+          id="speech-lang"
+          class="bg-[#042352] text-white w-[60%] p-1 rounded-[0.4em] appearance-none"
+        >
+          <option value="English">English</option>
+        </select>
+        <button
+          class="listen-speech border bg-[#F86F00] text-white w-[35%] p-1 rounded-[0.4em]"
+        >
+          Listen
+        </button>
       </div>
     </main>
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/controller/main.js"></script>
   </body>
 </html>
