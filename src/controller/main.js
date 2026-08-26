@@ -1,4 +1,4 @@
-import { convertTextToSpeech } from "../model/listen-btn.js";
+import { convertTextToSpeech } from "../model/speech.js";
 
 // click to listen to text
 const LISTEN_BTN = document.querySelector(".listen-speech");
