@@ -2,12 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="A text-to-speech project" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>text-to-speech</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="overall-container">
+      <div class="heading">
+        Text To Speech
+        <span>Converter</span>
+      </div>
+
+      <textarea name="text" id="text"></textarea>
+
+      <div>
+        <select name="speech-lang" id="speech-lang"></select>
+        <button class="listen-speech">Listen</button>
+      </div>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
