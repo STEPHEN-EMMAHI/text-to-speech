@@ -1,3 +1,4 @@
+import { clearText } from "../model/clear.js";
 import { convertTextToSpeech } from "../model/speech.js";
 import { systemThemeChange } from "../model/theme.js";
 
@@ -11,3 +12,7 @@ const DARK_MODE = window.matchMedia("(prefers-color-scheme: dark)");
 systemThemeChange(DARK_MODE);
 // add event listener when theme change
 DARK_MODE.addEventListener("change", systemThemeChange);
+
+// click clear to clear all the contents in the text area
+const CLEAR = document.querySelector(".clear-all");
+CLEAR.addEventListener("click", clearText);
