@@ -1,52 +1,32 @@
-let voices = [];
-let select_lang = document.getElementById("speech-lang");
-
-export function allvoices() {
-  // clear existing options to prevent duplicates option entries
-  // if onvoicechanged fires multiple times.
-  select_lang.innerHTML = "";
-
-  // get the voices
-  voices = window.speechSynthesis.getVoices();
-
-  // loop through each voice returned and turn it into a selectable
-  // option.
-  voices.forEach((voice, index) => {
-    // get the options
-    const OPTION = new Option(`${voice.name} ${voice.lang}`, index);
-    // add the voice options to the select area
-    select_lang.add(OPTION);
-  });
-}
-
-// listen for async voice loading to prevent the voices from
-// failing to load
-if (
-  typeof speechSynthesis !== "undefined" &&
-  speechSynthesis.onvoiceschanged !== undefined
-) {
-  speechSynthesis.onvoiceschanged = allvoices;
-}
-
-allvoices();
-
 export function convertTextToSpeech() {
-  // get the text area
+  let listen = document.querySelector(".listen-speech");
   const TEXT_AREA = document.getElementById("text");
+  const TEXT_AREA_VALUE = TEXT_AREA.value;
 
-  // if the voice is speaking remove voice
+  // if text is already speaking before click, then cancel text
+  // and do nothing
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
+    listen.textContent = "Listen";
+    return;
   }
 
-  // get the new sound object
-  const SPEECH = new SpeechSynthesisUtterance(TEXT_AREA.value);
+  // get the speech API
+  const SPEECH = new SpeechSynthesisUtterance(TEXT_AREA_VALUE);
 
-  // attach the selected voice to to the user's choice
-  if (voices.length > 0) {
-    const selectedVoiceIndex = select_lang.value;
-    SPEECH.voice = voices[selectedVoiceIndex];
+  // if text area value is empty, do nothing
+  if (TEXT_AREA_VALUE === "") {
+    return;
   }
 
+  // change listen to speaking(||)
+  listen.textContent = "||";
+
+  // speak
   window.speechSynthesis.speak(SPEECH);
+
+  // if it has finished speaking, the change the || to Listen
+  SPEECH.onend = () => {
+    listen.textContent = "Listen";
+  };
 }
