@@ -10,7 +10,8 @@ function populateVoices() {
   allVoices = window.speechSynthesis.getVoices();
   // retrieve all available voice
   allVoices.forEach((voice, index) => {
-    let option = new Option(`${voice.name} - ${voice.lang}`, index);
+    const status = voice.localService ? "" : " (Online)";
+    let option = new Option(`${voice.name} - ${voice.lang} ${status}`, index);
 
     if (voice.default) {
       option.selected = true;
@@ -58,6 +59,7 @@ export function convertTextToSpeech() {
   listen.textContent = "||";
 
   currenSpeech.onerror = (event) => {
+    console.log("Speech Synthesis Error", event.error);
     alert(`Voice failed to speak: ${event.error}`);
     listen.textContent = "Listen";
   };
