@@ -1,9 +1,9 @@
-let allVoices = [];
+export let allVoices = [];
 const SELECT_FIELD = document.getElementById("speech-lang");
 let currenSpeech = null;
 
 /* PopulateVoices Function */
-function populateVoices() {
+export function populateVoices() {
   // clear the previous field
   SELECT_FIELD.innerHTML = "";
 
@@ -22,10 +22,6 @@ function populateVoices() {
 
 // populate when the browser fires the event
 window.speechSynthesis.onvoiceschanged = populateVoices;
-
-// call it directly incase of different browser's loading
-// synchronously
-populateVoices();
 
 /* === */
 /* convertTextToSpeech Function */
